@@ -1,4 +1,4 @@
--- PETICIÓN PEDIDO UN CLIENTE --
+-- Consulta compra d'un client --
 
 SELECT 
     client_name AS Nombre_cliente,
@@ -23,7 +23,7 @@ FROM
 WHERE
     selle_id = 3;
 
--- LISTA DE RECOMENDACIONES ENTRE CLIENTES --
+-- Llista de recomanacions entre clients --
 
 SELECT 
     (SELECT client_name FROM clients WHERE clients_client_id=client_id)  AS 'Nombre', 
@@ -33,14 +33,14 @@ SELECT
     (SELECT client_surnames FROM clients WHERE recomender_client_id=client_id ) AS 'Apellido'
 FROM recomendations;
 
--- LISTA DE PROVEEDORES Y MODELOS --
+-- LLista de proveïdors i models --
 
 SELECT supplier_name, supplier_phone, supplier_nif, model_brand, model_name, model_type, model_price FROM suppliers
 INNER JOIN models ON models.Suppliers_supplier_id=supplier_id
 ORDER BY supplier_name;
 
--- NUMERO DE VENTAS EMPLEADOS --
+-- Númeor de ventas per treballador --
 
 SELECT employ_name,employ_surnames,COUNT(selle_id) AS 'número de ventas' FROM sellesrecord
 RIGHT JOIN employees ON sellesrecord.employees_employ_id=employ_id
-GROUP BY employees.employ_id; -- SIN ESTE CODIGO NO MUESTRA LOS ZEROS!!! --
+GROUP BY employees.employ_id; -- sense aquest codi no mostra els zeros! --
